@@ -7,12 +7,38 @@ class SlidingCardsView extends StatefulWidget {
 }
 
 class _SlidingCardsViewState extends State<SlidingCardsView> {
+  PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(viewportFraction: 0.8);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.55,
-      child: SlidingCard(
-          name: 'Ushuaia', date: '25-12-2019', assetName: 'steve-johnson.jpeg'),
+      child: PageView(
+        controller: pageController,
+        children: <Widget>[
+          SlidingCard(
+              name: 'Buenos Aires Art Week',
+              date: '25-12-2019',
+              assetName: 'steve-johnson.jpeg'),
+          SlidingCard(
+            name: 'Santiago Fashion Era',
+            date: '05-01-2020',
+            assetName: 'rodion-kutsaev.jpeg',
+          ),
+        ],
+      ),
     );
   }
 }
