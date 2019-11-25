@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'sliding_cards.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,8 +9,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My Show'),
+          backgroundColor: Colors.white,
+          title: Text(
+            'My Show',
+            style: TextStyle(
+              color: Colors.grey.shade900,
+            ),
+          ),
         ),
+        body: SlidingCardsView(),
       ),
     );
   }
