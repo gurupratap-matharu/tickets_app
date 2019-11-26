@@ -8,11 +8,17 @@ class SlidingCardsView extends StatefulWidget {
 
 class _SlidingCardsViewState extends State<SlidingCardsView> {
   PageController pageController;
+  double pageOffset = 0;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(viewportFraction: 0.8);
+    pageController.addListener(() {
+      setState(() {
+        pageOffset = pageController.page;
+      });
+    });
   }
 
   @override
@@ -29,13 +35,16 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
         controller: pageController,
         children: <Widget>[
           SlidingCard(
-              name: 'Buenos Aires Art Week',
-              date: '25-12-2019',
-              assetName: 'steve-johnson.jpeg'),
+            name: 'Buenos Aires Art Week',
+            date: '25-12-2019',
+            assetName: 'steve-johnson.jpeg',
+            offset: pageOffset,
+          ),
           SlidingCard(
             name: 'Santiago Fashion Era',
             date: '05-01-2020',
             assetName: 'rodion-kutsaev.jpeg',
+            offset: pageOffset,
           ),
         ],
       ),
